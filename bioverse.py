@@ -432,6 +432,17 @@ with left_col:
                     st.code(value["final_report"])
                     st.session_state["final_report"] = value["final_report"]
                     pdf_buffer = generate_pdf(topic, full_messages, value["final_report"])
+                    
+                    # Save to MySQL using our drug.py helpers
+                    try:
+                        import drug
+                        # Assuming user_id=None for anonymous or guest user
+                        drug.save_query_to_mysql(user_id=None, topic=topic, blood_group="N/A", condition="N/A", result_summary=value["final_report"][:2000])
+                        drug.save_report_to_mysql(user_id=None, topic=topic, pdf_bytes=pdf_buffer.getvalue())
+                        st.success("💾 Saved research to database successfully!")
+                    except Exception as e:
+                        st.warning(f"Could not save to database: {e}")
+
                     st.download_button(label="📥 Download Medical Report (PDF)",
                                        data=pdf_buffer,
                                        file_name=f"{topic.replace(' ', '_')}_Medical_Report.pdf",

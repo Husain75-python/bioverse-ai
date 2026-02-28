@@ -97,7 +97,7 @@ def ensure_schema():
         user_id INT,
         topic TEXT,
         blood_group VARCHAR(10),
-        condition TEXT,
+        `condition` TEXT,
         result_summary LONGTEXT,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
