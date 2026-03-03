@@ -1,4 +1,14 @@
-langchain_core
-langchain_groq
-Langchain_community
+langchain
+langchain-core
+langchain-community
+langchain-groq
 langgraph
+mysql-connector-python
+certifi
+requests
+streamlit
+python-dotenv
+reportlab
+gTTS
+networkx
+matplotlib
