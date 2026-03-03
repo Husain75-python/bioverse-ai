@@ -15,6 +15,7 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import A4
 from gtts import gTTS
+import certifi
 
 # LLM imports
 from langchain_core.messages import HumanMessage, AIMessage
@@ -69,6 +70,9 @@ def mysql_connect():
             user=MYSQL_USER,
             password=MYSQL_PASSWORD,
             database=MYSQL_DB,
+            ssl_ca=certifi.where(),
+            ssl_verify_cert=True,
+            ssl_verify_identity=True,
             autocommit=True
         )
         return conn
